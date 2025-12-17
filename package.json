@@ -1,0 +1,25 @@
+{
+  "name": "cypress-demoblaze",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean:reports": "if exist cypress\\reports rmdir /s /q cypress\\reports && mkdir cypress\\reports",
+    "cy:run": "cypress run",
+    "cy:parallel": "npm run clean:reports && cypress-parallel -s cy:run -t 3 -d \"cypress/e2e/*.cy.js\"",
+    "cy:merge": "mochawesome-merge cypress/reports/*.json > cypress/reports/report.json",
+    "cy:html": "marge cypress/reports/report.json -f index.html -o cypress/reports",
+    "cy:parallel:report": "npm run cy:parallel && npm run cy:merge && npm run cy:html && start cypress\\reports\\index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "cypress": "^15.7.1",
+    "cypress-mochawesome-reporter": "^4.0.2",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.1.0",
+    "mochawesome-report-generator": "^6.3.2"
+  }
+}
